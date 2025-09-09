@@ -15,6 +15,12 @@ export async function getApplicationById(id: string): Promise<Application | unde
   });
 }
 
+export async function getApplicationByApiKey(apiKey: string): Promise<Application | undefined> {
+  return db.query.applications.findFirst({
+    where: eq(applications.apiKey, apiKey),
+  });
+}
+
 export async function updateApplication(id: string, data: Partial<NewApplication>): Promise<Application[]> {
   return db.update(applications).set(data).where(eq(applications.id, id)).returning();
 }
