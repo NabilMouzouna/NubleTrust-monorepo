@@ -1,5 +1,13 @@
 {
   "$schema": "https://turborepo.com/schema.json",
+  "pipeline" : {
+    "dev": {
+      "env": ["DATABASE_URL"]
+    },
+    "build": {
+      "env": ["DATABASE_URL"]
+    }
+  },
   "ui": "tui",
   "tasks": {
     "build": {
