@@ -9,7 +9,8 @@
     "check-types": "turbo run check-types",
     "db:generate": "pnpm --filter @nubletrust/database run db:generate",
     "db:migrate": "pnpm --filter @nubletrust/database run db:migrate",
-    "db:studio":  "pnpm --filter @nubletrust/database run db:studio"
+    "db:studio":  "pnpm --filter @nubletrust/database run db:studio",
+    "db:health": "pnpm --filter @nubletrust/database run db:health"
   },
   "devDependencies": {
     "prettier": "^3.6.2",
