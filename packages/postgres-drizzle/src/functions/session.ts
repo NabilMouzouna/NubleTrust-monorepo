@@ -1,5 +1,5 @@
-import { db } from '../db.js';
-import { userSessions } from '../schema.js';
+import { db } from '../db';
+import { userSessions } from '../../../postgres-drizzle/src/schema';
 import { eq } from 'drizzle-orm';
 
 type NewUserSession = typeof userSessions.$inferInsert;

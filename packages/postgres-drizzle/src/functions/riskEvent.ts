@@ -1,5 +1,5 @@
-import { db } from '../db.js';
-import { riskEvents } from '../schema.js';
+import { db } from '../db';
+import { riskEvents } from '../../../postgres-drizzle/src/schema';
 import { eq } from 'drizzle-orm';
 
 type NewRiskEvent = typeof riskEvents.$inferInsert;

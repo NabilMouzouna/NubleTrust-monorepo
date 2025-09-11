@@ -1,11 +1,17 @@
 {
-  "extends": "@repo/typescript-config/nextjs.json",
+  "extends": "@nubletrust/typescript-config/nextjs.json",
   "compilerOptions": {
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@nubletrust/postgres-drizzle" : ["../../packages/postgres-drizzle/src/index.ts"],
+      "@nubletrust/core-types": ["../../packages/core-types/src/index.ts"],
+      "@nubletrust/core-types/*": ["../../packages/core-types/src/*"]
+    }
   },
   "include": [
     "**/*.ts",

@@ -8,22 +8,27 @@ export const applications = pgTable("applications", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
-export const appUsers = pgTable("app_users",
-  {
-    id: uuid("id").primaryKey().defaultRandom(),
-    appId: uuid("app_id")
-      .notNull()
-      .references(() => applications.id),
-    email: varchar("email", { length: 255 }).notNull(),
-    passwordHash: varchar("password_hash", { length: 255 }).notNull(),
-    createdAt: timestamp("created_at").notNull().defaultNow(),
-  },
-  (table) => {
-    return {
-        uniqueAppUserEmail: unique().on(table.appId, table.email), 
-    };
-  }
-);
+export const users = pgTable("users", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  passwordHash: varchar("password_hash", { length: 255 }).notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const appUsers = pgTable("app_users", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  appId: uuid("app_id")
+    .notNull()
+    .references(() => applications.id),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => users.id),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+}, (table) => {
+  return {
+    uniqueAppUser: unique().on(table.appId, table.userId),
+  };
+});
 
 export const userSessions = pgTable("user_sessions", {
   id: uuid("id").primaryKey().defaultRandom(),

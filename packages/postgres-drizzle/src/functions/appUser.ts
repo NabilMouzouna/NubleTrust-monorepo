@@ -1,5 +1,5 @@
-import { db } from '../db.js';
-import { appUsers } from '../schema.js';
+import { db } from '../db';
+import { appUsers, users } from '../../../postgres-drizzle/src/schema';
 import { eq, and } from 'drizzle-orm';
 
 type NewAppUser = typeof appUsers.$inferInsert;
@@ -16,12 +16,6 @@ export async function getAppUserById(id: string): Promise<AppUser | undefined> {
   });
 }
 
-export async function getAppUserByEmail(appId: string, email: string): Promise<AppUser | undefined> {
-    return db.query.appUsers.findFirst({
-        where: and(eq(appUsers.appId, appId), eq(appUsers.email, email)),
-    });
-}
-
 export async function updateAppUser(id: string, data: Partial<NewAppUser>): Promise<AppUser[]> {
   return db.update(appUsers).set(data).where(eq(appUsers.id, id)).returning();
 }
@@ -34,4 +28,22 @@ export async function getAllAppUsers(appId: string): Promise<AppUser[]> {
   return db.query.appUsers.findMany({
       where: eq(appUsers.appId, appId)
   });
+}
+
+/**
+ * Get an app user by appId + email (joins users table).
+ */
+export async function getAppUserByEmail(appId: string, email: string) {
+  return db
+    .select({
+      appUserId: appUsers.id,
+      appId: appUsers.appId,
+      userId: appUsers.userId,
+      email: users.email,
+      createdAt: appUsers.createdAt,
+    })
+    .from(appUsers)
+    .innerJoin(users, eq(appUsers.userId, users.id))
+    .where(and(eq(appUsers.appId, appId), eq(users.email, email)))
+    .then(rows => rows[0]); // return first or undefined
 }

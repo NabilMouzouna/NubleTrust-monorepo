@@ -1,5 +1,5 @@
 {
-  "name": "nuble-trust-core",
+  "name": "@nuble-trust-core",
   "version": "0.1.0",
   "type": "module",
   "private": true,
@@ -12,15 +12,18 @@
     "drizzle:push": "drizzle-kit generate && drizzle-kit migrate"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
+    "@nubletrust/postgres-drizzle": "workspace:*",
+    "@nubletrust/core-types": "workspace:*",
+    "@nubletrust/ui": "workspace:*",
     "drizzle-orm": "^0.44.5",
     "next": "^15.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@nubletrust/core-types": "workspace:*",
+    "@nubletrust/eslint-config": "workspace:*",
+    "@nubletrust/typescript-config": "workspace:*",
     "@types/node": "^22.15.3",
     "@types/pg": "^8.15.5",
     "@types/react": "19.1.0",

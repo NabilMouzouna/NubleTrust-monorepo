@@ -1,12 +1,22 @@
-import { db } from '../db.js';
-import { applications } from '../schema.js';
-import { eq } from 'drizzle-orm';
+import { eq, or } from 'drizzle-orm';
+import {db} from "../db"
+import { applications } from '../schema';
 
 type NewApplication = typeof applications.$inferInsert;
 type Application = typeof applications.$inferSelect;
 
-export async function createApplication(data: NewApplication): Promise<Application[]> {
-  return db.insert(applications).values(data).returning();
+export async function createApplication(data: NewApplication): Promise<Application|undefined> {
+  // Check if app with same name or apiKey already exists
+  const existingApp = await db.query.applications.findFirst({
+    where: or(eq(applications.name, data.name), eq(applications.apiKey, data.apiKey)),
+  });
+
+  if (existingApp) {
+    throw new Error(`Application with name "${data.name}" or API key already exists.`);
+  }
+  // Insert new app
+  const [app] = await db.insert(applications).values(data).returning();
+  return app;
 }
 
 export async function getApplicationById(id: string): Promise<Application | undefined> {
