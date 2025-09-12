@@ -6,6 +6,6 @@ Content-Type: application/json
 x-api-key : 0cf1ec8aabfcc4f4a8c2dc84750b4723556f7a04bea58aef40141b199d33c538
 
 {
-  "email": "alice@example.com",
+  "email": "nabil@example.com",
   "password": "SuperSecure123!"
 }

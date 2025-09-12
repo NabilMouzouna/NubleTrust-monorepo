@@ -12,9 +12,10 @@
     "drizzle:push": "drizzle-kit generate && drizzle-kit migrate"
   },
   "dependencies": {
-    "@nubletrust/postgres-drizzle": "workspace:*",
     "@nubletrust/core-types": "workspace:*",
+    "@nubletrust/postgres-drizzle": "workspace:*",
     "@nubletrust/ui": "workspace:*",
+    "bcryptjs": "^3.0.2",
     "drizzle-orm": "^0.44.5",
     "next": "^15.5.0",
     "react": "^19.1.0",

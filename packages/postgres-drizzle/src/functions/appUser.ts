@@ -45,5 +45,5 @@ export async function getAppUserByEmail(appId: string, email: string) {
     .from(appUsers)
     .innerJoin(users, eq(appUsers.userId, users.id))
     .where(and(eq(appUsers.appId, appId), eq(users.email, email)))
-    .then(rows => rows[0]); // return first or undefined
+    .then(rows => rows[0]); 
 }
