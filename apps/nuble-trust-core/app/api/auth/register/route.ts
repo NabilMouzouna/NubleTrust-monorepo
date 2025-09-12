@@ -3,6 +3,7 @@ import { verifyApiKey } from "../../../../utils/verifyApiKey"
 import { responseHelper } from "../../../../utils/responseHelper"
 import {createAppUser, createUser, getAppUserByEmail} from "@nubletrust/postgres-drizzle"
 import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
 
 export async function POST(request : NextRequest){
     const apiKey = await request.headers.get("x-api-key")
@@ -27,17 +28,29 @@ export async function POST(request : NextRequest){
 
             // if database failed to create the user
             if(!user) return responseHelper(false,"Something went wrong",500)
-            try {
-                await createAppUser({appId,userId : user.id})
-                const data = {
-                    id : user.id,
-                    email : user.email,
-                    message : "Registered successfully"
-                }
-                return responseHelper(true,data,201)
-            } catch (error) {
-                return responseHelper(false,(error as Error).message,500)
-            }
+                try {
+                    await createAppUser({ appId, userId: user.id });
+                  
+                    // JWT payload
+                    const payload = {
+                      sub: user.id,
+                      email: user.email,
+                      appId,
+                    };
+                    const accessToken = jwt.sign(payload, process.env.APP_SECRET!, {
+                      expiresIn: "15m",
+                    });
+                  
+                    // Return both token and data
+                    const data = {
+                      accessToken,
+                      message: "Registered successfully",
+                    };
+                  
+                    return responseHelper(true, data, 201);
+                  } catch (error) {
+                    return responseHelper(false, (error as Error).message, 500);
+                  }
     } catch (error) {
     // Unpredictable errors handling
         return responseHelper(false,(error as Error).message,500)
