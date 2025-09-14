@@ -1,7 +1,8 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import data from "./data.json"
+import { createApplication, getAllApplicationsByDeveloper } from "@nubletrust/postgres-drizzle"
+
 
 export async function generateKey(keyType: "live" | "test"): Promise<string> {
   return `nt_${keyType}_sk_${Math.random().toString(36).substring(2, 18)}`
@@ -10,47 +11,34 @@ export async function generateKey(keyType: "live" | "test"): Promise<string> {
 export async function createApp(formData: FormData) {
   const name = formData.get("name") as string
   const description = formData.get("description") as string
-
   if (!name) {
     throw new Error("App name is required")
   }
 
   // Generate new app ID and API keys
-  const newApp = {
-    id: `app_${Date.now()}`,
+  const payload = {
     name,
-    description: description || "",
-    apiKey: generateKey("live"),
-    testApiKey: generateKey("test"),
-    createdAt: new Date().toISOString(),
-    status: "active",
-    environment: "development",
-    domain: "",
-    redirectUrls: [],
-    settings: {
-      sessionTimeout: 3600,
-      enableMFA: false,
-      allowSignup: true,
-      emailVerification: true,
-    },
-    usage: {
-      totalUsers: 0,
-      activeUsers: 0,
-      apiCalls: 0,
-      lastActivity: new Date().toISOString(),
-    },
-  }
+    description,
+    developerId : "018123a6-f087-4d79-8b10-361bfc3f55f7",
+    apiKey : await generateKey("live"),
+    allowedOrigins : ["*"],
 
+    }
+    let newApp;
+  try {
+    newApp = await createApplication(payload)
+  } catch (error) {
+    throw new Error("something unexpected" + (error as Error).message)
+  }
+  console.log("Creating new app:", name)
   // In a real app, you'd save to database here
-  console.log("Creating new app:", newApp)
 
   revalidatePath("/console")
   return { success: true, app: newApp }
 }
 
-export async function getApps() {
-  // In a real app, fetch from database
-  return data.apps
+export async function getApps(developerId : string) {
+return await getAllApplicationsByDeveloper(developerId)
 }
 
 export async function getApp(id: string) {

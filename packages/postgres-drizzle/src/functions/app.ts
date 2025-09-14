@@ -39,6 +39,10 @@ export async function deleteApplication(id: string): Promise<Application[]> {
   return db.delete(applications).where(eq(applications.id, id)).returning();
 }
 
-export async function getAllApplications(): Promise<Application[]> {
-  return db.query.applications.findMany();
+export async function getAllApplicationsByDeveloper(
+  developerId: string
+): Promise<Application[]> {
+  return db.query.applications.findMany({
+    where: eq(applications.developerId, developerId),
+  });
 }

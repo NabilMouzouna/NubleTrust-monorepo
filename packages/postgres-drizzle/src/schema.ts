@@ -2,7 +2,9 @@ import { pgTable, uuid, varchar, timestamp, text, integer, jsonb, unique } from 
 
 export const applications = pgTable("applications", {
   id: uuid("id").primaryKey().defaultRandom(),
+  developerId: uuid("developer_id").notNull().references(() => developers.id, { onDelete: "cascade" }),
   name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
   apiKey: varchar("api_key", { length: 255 }).notNull(),
   allowedOrigins: text("allowed_origins").array().notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
@@ -13,6 +15,13 @@ export const users = pgTable("users", {
   email: varchar("email", { length: 255 }).notNull().unique(),
   passwordHash: varchar("password_hash", { length: 255 }).notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const developers = pgTable("developers", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  passwordHash: varchar("password_hash", { length: 255 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const appUsers = pgTable("app_users", {

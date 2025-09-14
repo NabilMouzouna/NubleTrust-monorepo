@@ -20,9 +20,8 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@postgres-drizzle": ["../../packages/postgres-drizzle/src/index.ts"],
-      "@nubletrust/core-types": ["../../packages/core-types/src/index.ts"],
-      "@nubletrust/core-types/*": ["../../packages/core-types/src/*"]
+      "@nubletrust/postgres-drizzle" : ["../../packages/postgres-drizzle/src/index.ts"],
+      "@nubletrust/core-types": ["../../packages/core-types/src/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
