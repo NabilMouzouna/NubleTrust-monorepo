@@ -40,6 +40,7 @@ export async function getAppUserByEmail(appId: string, email: string) {
       appId: appUsers.appId,
       userId: appUsers.userId,
       email: users.email,
+      password : users.passwordHash,
       createdAt: appUsers.createdAt,
     })
     .from(appUsers)

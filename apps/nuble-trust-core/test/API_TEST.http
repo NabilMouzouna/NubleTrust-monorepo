@@ -3,9 +3,22 @@ GET http://localhost:3000
 ###
 POST http://localhost:3000/api/auth/register
 Content-Type: application/json
-x-api-key : 0cf1ec8aabfcc4f4a8c2dc84750b4723556f7a04bea58aef40141b199d33c538
+x-api-key : nt_live_sk_2q7ehgzu1xq
 
 {
   "email": "nabil@example.com",
   "password": "SuperSecure123!"
 }
+
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+x-api-key : nt_live_sk_2q7ehgzu1xq
+
+{
+  "email": "nabil@example.com",
+  "password": "SuperSecure23!"
+}
+
+###
+GET http://localhost:3000/api/.well-known/publicKey

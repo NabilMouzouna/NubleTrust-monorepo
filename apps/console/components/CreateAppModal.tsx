@@ -1,6 +1,6 @@
 "use client"
 import { X } from "lucide-react"
-import { createApp } from "@/lib/actions"
+import { createApp } from "@/lib/helpers"
 import { useState } from "react"
 
 type CreateAppModalProps = {

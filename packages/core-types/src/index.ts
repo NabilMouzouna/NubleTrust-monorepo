@@ -1,5 +1,5 @@
 export type ResponseTypes = {
     success : boolean
-    message : any
+    data : any
     status : number
 }
