@@ -1,15 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyApiKey } from "../../../../utils/verifyApiKey";
 import jwt from "jsonwebtoken";
-import { getAppUserById } from "@nubletrust/postgres-drizzle";
+import { getUserById } from "@nubletrust/postgres-drizzle";
 import * as fs from "fs";
 import * as path from "path";
 
 interface TokenPayload {
     sub: string;
+    email : string;
     appId: string;
-    iat: number;
-    exp: number;
 }
 
 export async function POST(request: NextRequest) {
@@ -17,7 +16,6 @@ export async function POST(request: NextRequest) {
     
     // 1. Get refresh token from cookies
     const refreshToken = request.cookies.get('refreshToken')?.value;
-
     if (!apiKey) {
         return NextResponse.json({ success: false, message: "Please provide an API key" }, { status: 401 });
     }
@@ -32,19 +30,20 @@ export async function POST(request: NextRequest) {
 
     try {
         const decoded = jwt.verify(refreshToken, process.env.APP_REFRESH_SECRET!) as TokenPayload;
-
         if (decoded.appId !== appId) {
             return NextResponse.json({ success: false, message: "Refresh token is not valid for this application" }, { status: 401 });
         }
-
-        const user = await getAppUserById(decoded.sub);
+        
+        const user = await getUserById(decoded.sub);
+        console.log("from backend server, old user by Id",decoded.sub,decoded.email)
         if (!user) {
             return NextResponse.json({ success: false, message: "User not found" }, { status: 404 });
         }
 
         // Issue a new access token
         const payload = {
-            sub: user.userId,
+            sub: user.id,
+            email : decoded.email,
             appId: appId,
         };
 
@@ -59,8 +58,9 @@ export async function POST(request: NextRequest) {
         const responseBody = {
             accessToken,
             user: {
-                id: user.userId,
-                appId : user.appId
+                id: user.id,
+                email : decoded.email,
+                appId
             }
         };
 

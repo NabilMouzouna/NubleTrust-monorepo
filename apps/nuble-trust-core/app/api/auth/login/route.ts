@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
             path: "/",
             maxAge: 60 * 60 * 24 * 7, // 7 days
           });
-
+          console.log(response.cookies.get("refreshToken"))
         return response;
     } catch (error) {
         return responseHelper(false, (error as Error).message, 500);

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import AuthProvider from "@/SDK/AuthProvider";
-import { AuthConfig } from "@/SDK/types";
+// import { AuthConfig } from "@/SDK/types";
 
 
 const geistSans = Geist({
@@ -25,18 +24,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const config : AuthConfig = {
-    apiKey : "nt_live_sk_2q7ehgzu1xq",
-    baseUrl : "http://localhost:3000"
-  }
+  // const config : AuthConfig = {
+  //   apiKey : "nt_live_sk_2q7ehgzu1xq",
+  //   baseUrl : "http://localhost:3000"
+  // }
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-          <AuthProvider config={config}>
+          {/* <AuthProvider config={config}> */}
           {children}
-          </AuthProvider>
+          {/* </AuthProvider> */}
       </body>
     </html>
   );
