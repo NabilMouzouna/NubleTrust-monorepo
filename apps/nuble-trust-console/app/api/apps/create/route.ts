@@ -3,19 +3,23 @@ import { registerApp } from '@/lib/utils';
 
 export async function POST(request: NextRequest) {
   try {
-    const {name,description} = await request.json();
-    const app = await registerApp(name,description);
-    return NextResponse.json(app);
-  } catch (error: unknown) {
-    console.error('Error creating app:', error);
-    if (
-      error instanceof Error &&
-      error.message.includes('duplicate key') &&
-      error.message.includes('applications_name_key')
-    ) {
-      return NextResponse.json({ error: 'Application with the same name already exists' }, { status: 400 });
+    const { name, description } = await request.json();
+
+    if (!name) {
+      return NextResponse.json({ error: "Name is required" }, { status: 400 });
     }
 
-    return new NextResponse('Internal Server Error', { status: 500 });
+    const app = await registerApp(name, description);
+    if (!app) {
+      return NextResponse.json({ error: "Failed to create app" }, { status: 500 });
+    }
+
+    return NextResponse.json(app);
+  } catch (error) {
+    console.error("Error creating app:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error", details: (error as Error).message },
+      { status: 500 }
+    );
   }
 }

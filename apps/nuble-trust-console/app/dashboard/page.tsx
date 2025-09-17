@@ -15,15 +15,20 @@ export default function Home() {
 
   async function handleSubmit(name: string, description: string) {
     setIsLoading(true);
-    
+  
     try {
       const res = await fetch("/api/apps/create", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ name, description })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, description }),
       });
+  
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        console.error("API Error:", errorData);
+        return; // ❌ don’t setApp if backend failed
+      }
+  
       const result = await res.json();
       setApp(result);
     } catch (error) {

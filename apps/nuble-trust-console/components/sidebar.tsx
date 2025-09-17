@@ -43,7 +43,7 @@ export function Sidebar() {
             className="fixed inset-0 z-50 lg:hidden"
           >
             <div 
-              className="fixed inset-0 bg-background/80 backdrop-blur-sm" 
+              className="fixed inset-0 bg-background/80 backdrop-blur-md" 
               onClick={() => setSidebarOpen(false)} 
             />
             <motion.div
@@ -53,7 +53,7 @@ export function Sidebar() {
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               className="fixed inset-y-0 left-0 z-50 w-64 bg-card border-r border-border"
             >
-              <div className="flex h-full flex-col bg-red-500">
+              <div className="flex h-full flex-col">
               <div className="flex h-16 items-center justify-between px-6">
                   <div className="flex items-center space-x-2">
                     <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center cursor-pointer">
@@ -165,7 +165,7 @@ export function Sidebar() {
       </div>
 
       {/* Mobile menu button */}
-      <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-border bg-background px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:hidden">
+      <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-border bg-background px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:hidden bg-auto">
         <Button
           variant="ghost"
           size="icon"
