@@ -27,7 +27,8 @@ function createApiKey() {
   }
 export async function registerApp(name : string , description : string){
       const apiKey = createApiKey()
-      const developerId = process.env.DEVELOPER_ID! //TODO should be updated lated
+      const developerId = process.env.DEVELOPER_ID || "912d756b-265a-4c4c-9bc8-3082c8ddd29f" //TODO should be updated lated
+      console.log(developerId)
       try {
         const app = await createApplication({
           name,
