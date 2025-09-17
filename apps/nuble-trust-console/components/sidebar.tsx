@@ -10,13 +10,13 @@ import {
   X,
   Shield,
   Database,
-  Activity,
   BarChart3,
   Key
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const navigation = [
   { name: "Dashboard", href: "#", icon: LayoutDashboard, current: true },
@@ -53,22 +53,25 @@ export function Sidebar() {
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               className="fixed inset-y-0 left-0 z-50 w-64 bg-card border-r border-border"
             >
-              <div className="flex h-full flex-col">
-                <div className="flex h-16 items-center justify-between px-6">
+              <div className="flex h-full flex-col bg-red-500">
+              <div className="flex h-16 items-center justify-between px-6">
                   <div className="flex items-center space-x-2">
-                    <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center cursor-pointer">
                       <Shield className="h-5 w-5 text-primary-foreground" />
                     </div>
                     <span className="text-lg font-semibold text-foreground">NubleTrust</span>
                   </div>
+                <div className="flex items-center gap-1">
+                  <ThemeToggle />
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => setSidebarOpen(false)}
-                    className="text-foreground"
+                    className="text-foreground "
                   >
                     <X className="h-5 w-5" />
                   </Button>
+                </div>
                 </div>
                 <nav className="flex-1 space-y-1 px-3 py-4">
                   {navigation.map((item) => (
@@ -104,13 +107,14 @@ export function Sidebar() {
       {/* Desktop sidebar */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-64 lg:flex-col">
         <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-card border-r border-border">
-          <div className="flex h-16 shrink-0 items-center px-6">
+          <div className="flex h-16 shrink-0 items-center px-6 justify-between">
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
                 <Shield className="h-5 w-5 text-primary-foreground" />
               </div>
               <span className="text-lg font-semibold text-foreground">NubleTrust</span>
             </div>
+            <ThemeToggle />
           </div>
           <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -175,6 +179,9 @@ export function Sidebar() {
             <Shield className="h-5 w-5 text-primary-foreground" />
           </div>
           <span className="text-lg font-semibold text-foreground">NubleTrust</span>
+        </div>
+        <div className="ml-auto">
+          <ThemeToggle />
         </div>
       </div>
     </>

@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Database, Users, Shield, Activity, TrendingUp } from "lucide-react"
+import { Database, Users, Shield, Activity } from "lucide-react"
 import { motion } from "framer-motion"
 
 interface StatsCardsProps {
