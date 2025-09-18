@@ -76,7 +76,7 @@ export default function Auth(){
                             className="text-center pt-4"
                         >
                             <p className="text-sm text-muted-foreground">
-                                Secure authentication powered by NextAuth.js
+                                Secure authentication powered by NubleTrust
                             </p>
                         </motion.div>
                     </CardContent>
