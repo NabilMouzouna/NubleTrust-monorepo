@@ -8,11 +8,13 @@ import { AppCreationForm } from "@/components/dashboard/app-creation-form";
 import { AppDetails } from "@/components/dashboard/app-details";
 import { QuickActions } from "@/components/dashboard/quick-actions";
 import { motion } from "framer-motion";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 export default function Home() {
   const [app, setApp] = useState<registerAppReturn | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const { data : session ,status } = useSession()
   async function handleSubmit(name: string, description: string) {
     setIsLoading(true);
   
@@ -37,7 +39,10 @@ export default function Home() {
       setIsLoading(false);
     }
   }
-
+  if(status === "loading") return (<h1>Loading...</h1>)
+  if(status === "unauthenticated") {
+    redirect("/auth")
+  }
   return (
     <Layout>
       <div className="space-y-8">
@@ -51,6 +56,7 @@ export default function Home() {
           <p className="text-muted-foreground mt-2">
             Manage your NubleTrust applications and monitor user activity
           </p>
+          <i>developerID : {session?.user.id}</i>
         </motion.div>
 
         {/* Stats Cards */}

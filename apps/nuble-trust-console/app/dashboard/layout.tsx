@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/theme-provider";
+"use client"
+import { SessionProvider } from "next-auth/react";
 
 
-export const metadata: Metadata = {
-  title: "NubleTrust Console",
-  description: "Developer console for managing NubleTrust applications",
-};
 
 export default function RootLayout({
   children,
@@ -14,9 +10,9 @@ export default function RootLayout({
 }>) {
   return (
       <main className="font-body antialiased">
-        <ThemeProvider>
+        <SessionProvider>
           {children}
-        </ThemeProvider>
+        </SessionProvider>
       </main>
   );
 }

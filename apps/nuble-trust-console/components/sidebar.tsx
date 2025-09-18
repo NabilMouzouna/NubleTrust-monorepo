@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { 
   LayoutDashboard, 
-  Plus, 
   Users, 
   Settings, 
   Menu, 
@@ -11,12 +10,14 @@ import {
   Shield,
   Database,
   BarChart3,
-  Key
+  Key,
+  LogOut
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { signOut } from "next-auth/react"
 
 const navigation = [
   { name: "Dashboard", href: "#", icon: LayoutDashboard, current: true },
@@ -30,7 +31,6 @@ const navigation = [
 
 export function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-
   return (
     <>
       {/* Mobile sidebar */}
@@ -152,9 +152,11 @@ export function Sidebar() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Button className="w-full justify-start" size="sm">
-                      <Plus className="h-4 w-4 mr-2" />
-                      New Application
+                    <Button 
+                    onClick={() => { signOut({callbackUrl : "/auth"}) }}
+                    className="w-full justify-start text-red-500 border-2 border-red-500 px-3 py-2 cursor-pointer" size="sm">
+                      <span className="mx-auto flex items-center"><LogOut className="h-4 w-4 mr-2" /><span>Logout</span>
+                      </span>
                     </Button>
                   </motion.div>
                 </div>
