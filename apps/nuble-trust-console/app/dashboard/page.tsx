@@ -56,7 +56,7 @@ export default function Home() {
           <p className="text-muted-foreground mt-2">
             Manage your NubleTrust applications and monitor user activity
           </p>
-          <i>developerID : {session?.user.id}</i>
+          {!!session?.user && session.user.id && <i>developerID : {session.user.id}</i>}
         </motion.div>
 
         {/* Stats Cards */}
