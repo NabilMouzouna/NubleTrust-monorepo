@@ -20,8 +20,8 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { signOut } from "next-auth/react"
 
 const navigation = [
-  { name: "Dashboard", href: "#", icon: LayoutDashboard, current: true },
-  { name: "Applications", href: "#", icon: Database, current: false },
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard, current: true },
+  { name: "Applications", href: "/dashboard/applications", icon: Database, current: false },
   { name: "Users", href: "#", icon: Users, current: false },
   { name: "Analytics", href: "#", icon: BarChart3, current: false },
   { name: "API Keys", href: "#", icon: Key, current: false },
