@@ -11,14 +11,16 @@
   "dependencies": {
     "@nubletrust/postgres-drizzle": "workspace:*",
     "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2",
     "next": "15.5.3",
-    "next-auth": "^4.24.11",
+    "pg": "^8.16.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
