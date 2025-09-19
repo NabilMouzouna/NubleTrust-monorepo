@@ -42,12 +42,17 @@ const stats = [
   }
 ]
 
-export function StatsCards({ appCount, userCount, securityScore, apiCalls }: StatsCardsProps) {
+export function StatsCards({ appCount = 0, userCount = 0, securityScore = 100, apiCalls = 0 }: StatsCardsProps) {
+  const safeAppCount = Number.isFinite(appCount) ? appCount : 0
+  const safeUserCount = Number.isFinite(userCount) ? userCount : 0
+  const safeSecurityScore = Number.isFinite(securityScore) ? securityScore : 100
+  const safeApiCalls = Number.isFinite(apiCalls) ? apiCalls : 0
+
   const updatedStats = [
-    { ...stats[0], value: appCount.toString(), change: appCount > 0 ? `+${appCount} from last month` : "No applications yet" },
-    { ...stats[1], value: userCount.toString(), change: userCount > 0 ? `+${userCount} new users` : "No users registered yet" },
-    { ...stats[2], value: `${securityScore}%`, change: "All systems secure" },
-    { ...stats[3], value: apiCalls.toString(), change: apiCalls > 0 ? `+${apiCalls} today` : "No API calls today" }
+    { ...stats[0], value: String(safeAppCount), change: safeAppCount > 0 ? `+${safeAppCount} from last month` : "No applications yet" },
+    { ...stats[1], value: String(safeUserCount), change: safeUserCount > 0 ? `+${safeUserCount} new users` : "No users registered yet" },
+    { ...stats[2], value: `${safeSecurityScore}%`, change: "All systems secure" },
+    { ...stats[3], value: String(safeApiCalls), change: safeApiCalls > 0 ? `+${safeApiCalls} today` : "No API calls today" }
   ]
 
   return (

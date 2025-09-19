@@ -25,24 +25,21 @@ function createApiKey() {
   
     return apiKey
   }
-export async function registerApp(name : string , description : string){
-      const apiKey = createApiKey()
-      const developerId = process.env.DEVELOPER_ID || "912d756b-265a-4c4c-9bc8-3082c8ddd29f" //TODO should be updated lated
-      console.log(developerId)
-      try {
-        const app = await createApplication({
-          name,
-          description,
-          developerId,
-          apiKey,
-          allowedOrigins :["*"]
-        })
-        console.log(app)
-        return app? app : null
-      } catch (error) {
-        if (error instanceof Error) {
-          throw new Error(error.message)
-        }
-        throw error
-      }
+export async function registerApp(name: string, description: string, developerId: string){
+  const apiKey = createApiKey()
+  try {
+    const app = await createApplication({
+      name,
+      description,
+      developerId,
+      apiKey,
+      allowedOrigins: ["*"]
+    })
+    return app ? app : null
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message)
     }
+    throw error
+  }
+}

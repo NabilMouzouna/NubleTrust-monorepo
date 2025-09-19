@@ -1,5 +1,6 @@
 "use client"
 import { SessionProvider } from "next-auth/react";
+import { AppsProvider } from "@/components/dashboard/apps-provider";
 
 
 
@@ -11,7 +12,9 @@ export default function RootLayout({
   return (
       <main className="font-body antialiased">
         <SessionProvider>
-          {children}
+          <AppsProvider>
+            {children}
+          </AppsProvider>
         </SessionProvider>
       </main>
   );

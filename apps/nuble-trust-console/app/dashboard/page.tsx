@@ -1,7 +1,7 @@
 "use client";
 
 import { registerAppReturn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Layout } from "@/components/layout";
 import { StatsCards } from "@/components/dashboard/stats-cards";
 import { AppCreationForm } from "@/components/dashboard/app-creation-form";
@@ -10,23 +10,40 @@ import { QuickActions } from "@/components/dashboard/quick-actions";
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { AppsConsumer } from "@/components/dashboard/apps-provider";
 
 export default function Home() {
   const [app, setApp] = useState<registerAppReturn | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { data : session ,status } = useSession()
+
+  const { setApps, apps } = AppsConsumer()
+  useEffect(() => {
+    const fetchApps = async () => {
+        const data = await fetch(`/api/apps?developerId=${session?.user?.id}`)
+        const dataJson = await data.json()
+        setApps(dataJson)
+    }
+    fetchApps()
+  }, [ session?.user?.id, setApps, app])
   async function handleSubmit(name: string, description: string) {
     setIsLoading(true);
   
     try {
+      if (!session?.user?.id) {
+        console.error("Missing developerId: user not authenticated yet");
+        return;
+      }
       const res = await fetch("/api/apps/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, description }),
+        body: JSON.stringify({ name, description, developerId: session.user.id }),
       });
   
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
+        const raw = await res.text();
+        let errorData: unknown = raw;
+        try { errorData = JSON.parse(raw); } catch {}
         console.error("API Error:", errorData);
         return; // ❌ don’t setApp if backend failed
       }
@@ -61,7 +78,7 @@ export default function Home() {
 
         {/* Stats Cards */}
         <StatsCards 
-          appCount={app ? 1 : 0}
+          appCount={apps.length}
           userCount={0}
           securityScore={100}
           apiCalls={0}
