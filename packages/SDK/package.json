@@ -1,0 +1,40 @@
+{
+  "name": "@nuble-trust/sdk",
+  "version": "0.1.0",
+  "private": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --sourcemap --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --sourcemap --watch",
+    "lint": "eslint . --ext .ts,.tsx",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "@nuble-trust/eslint-config": "workspace:*",
+    "@nuble-trust/typescript-config": "workspace:*",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/react": "^18.3.3",
+    "eslint": "^8.57.0",
+    "react": "^18.3.1",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
