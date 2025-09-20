@@ -308,12 +308,15 @@ importers:
       bcryptjs:
         specifier: ^3.0.2
         version: 3.0.2
+      jsonwebtoken:
+        specifier: ^9.0.2
+        version: 9.0.2
       next:
         specifier: 15.5.3
         version: 15.5.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      next-auth:
-        specifier: ^4.24.11
-        version: 4.24.11(next@15.5.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      pg:
+        specifier: ^8.16.3
+        version: 8.16.3
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -327,6 +330,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.1.13
+      '@types/jsonwebtoken':
+        specifier: ^9.0.10
+        version: 9.0.10
       '@types/node':
         specifier: ^20
         version: 20.19.14
@@ -360,6 +366,9 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.1.0
         version: 1.1.1(@types/react@18.3.24)(react@18.1.0)
+      '@radix-ui/react-tabs':
+        specifier: ^1.1.2
+        version: 1.1.2(@types/react-dom@18.3.7(@types/react@18.3.24))(@types/react@18.3.24)(react-dom@18.1.0(react@18.1.0))(react@18.1.0)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.1
@@ -7069,21 +7078,6 @@ snapshots:
       preact-render-to-string: 5.2.6(preact@10.27.2)
       react: 18.1.0
       react-dom: 18.1.0(react@18.1.0)
-      uuid: 8.3.2
-
-  next-auth@4.24.11(next@15.5.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      '@babel/runtime': 7.28.4
-      '@panva/hkdf': 1.2.1
-      cookie: 0.7.2
-      jose: 4.15.9
-      next: 15.5.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      oauth: 0.9.15
-      openid-client: 5.7.1
-      preact: 10.27.2
-      preact-render-to-string: 5.2.6(preact@10.27.2)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
       uuid: 8.3.2
 
   next-themes@0.3.0(react-dom@18.1.0(react@18.1.0))(react@18.1.0):

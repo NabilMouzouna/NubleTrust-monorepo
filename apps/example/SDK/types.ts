@@ -1,11 +1,17 @@
-// sdk/core/types.ts
-
-export interface AuthConfig {
-    apiKey: string;
-    baseUrl: string;
-  }
-  
-  export interface User {
+export type User = {
     id: string;
-    appId: string;
-  }
+    email: string;
+}
+export type ResultType = {
+    success : boolean
+    status : number
+    message : string
+    accessToken? : string 
+    error? : Error,
+    user? : User
+}
+
+export type ConfigType ={
+    baseUrl : string,
+    apiKey : string,
+}

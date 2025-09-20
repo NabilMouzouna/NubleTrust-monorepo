@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import NTProvider from "@/SDK/src/react/authProvider";
+import { ntConfig } from "./nt.config";
 // import { AuthConfig } from "@/SDK/types";
 
 
@@ -24,18 +26,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const config : AuthConfig = {
-  //   apiKey : "nt_live_sk_2q7ehgzu1xq",
-  //   baseUrl : "http://localhost:3000"
-  // }
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-          {/* <AuthProvider config={config}> */}
-          {children}
-          {/* </AuthProvider> */}
+        <NTProvider config={ntConfig}>{children}</NTProvider>
       </body>
     </html>
   );
