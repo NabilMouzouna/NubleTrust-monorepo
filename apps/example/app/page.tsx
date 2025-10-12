@@ -1,6 +1,6 @@
 'use client';
 
-import { useNubleTrust } from '@/SDK/src/react/authProvider';
+import { useNubleTrust } from '@nubletrust/sdk';
 import Link from 'next/link';
 
 export default function Home() {

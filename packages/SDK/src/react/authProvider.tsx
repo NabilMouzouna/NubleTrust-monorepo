@@ -1,7 +1,9 @@
 "use client"
-import React, { useContext, createContext, useState, ReactNode, useEffect } from "react";
+import React = require("react");
+import { useContext, createContext, useState, ReactNode, useEffect } from "react";
 import NubleTrustAuth from "../core";
-import { ConfigType, User, ResultType } from "../../types";
+import { ConfigType, User, ResultType } from "../types";
+import { getDeviceInfo } from "../utils/deviceInfo";
 
 interface NTContextType {
     isAuthenticated: boolean;
@@ -32,8 +34,9 @@ export default function NTProvider({ config, children }: { config: ConfigType; c
                 }
 
                 console.log("[NTProvider] checkSession: Stored token found, attempting refresh.");
+                const deviceInfo = getDeviceInfo();
                 // Attempt to refresh the token to validate the session
-                const refreshResult = await nt.authRefresh();
+                const refreshResult = await nt.authRefresh(deviceInfo);
                 console.log("[NTProvider] checkSession: authRefresh result:", refreshResult);
 
                 if (refreshResult && typeof refreshResult === 'object' && 'success' in refreshResult) {
@@ -41,7 +44,7 @@ export default function NTProvider({ config, children }: { config: ConfigType; c
                     if (resultData.success && resultData.user && resultData.accessToken) {
                         console.log("[NTProvider] checkSession: Refresh successful, user authenticated.");
                         localStorage.setItem("nuble-trust", resultData.accessToken); // Store new token
-                        setUser(resultData.user);
+                        setUser({...resultData.user, username : resultData.user.email.split("@")[0]!});
                         setIsAuthenticated(true);
                     } else {
                         console.log("[NTProvider] checkSession: Refresh failed or didn't return expected data.");
@@ -76,7 +79,8 @@ export default function NTProvider({ config, children }: { config: ConfigType; c
         console.log(`[NTProvider] authentication: Starting ${authType} for email: ${email}`);
         setIsLoading(true);
         try {
-            const result = await nt.authentication(authType, email, password);
+            const deviceInfo = getDeviceInfo();
+            const result = await nt.authentication(authType, email, password, deviceInfo);
             console.log(`[NTProvider] authentication: ${authType} result:`, result);
             if (result && typeof result === 'object' && 'success' in result) {
                 const resultData = result as ResultType;

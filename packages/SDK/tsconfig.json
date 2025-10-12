@@ -1,5 +1,5 @@
 {
-  "extends": "@nuble-trust/typescript-config/react-library.json",
+  "extends": "@nubletrust/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist"
   },

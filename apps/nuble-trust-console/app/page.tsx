@@ -94,19 +94,19 @@ export default function Home() {
           <div ref={heroRef} className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-secondary/50 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
               <Shield className="w-4 h-4 text-primary" />
-              <span className="text-sm text-muted-foreground">Open Source Authentication Platform</span>
+              <span className="text-sm text-muted-foreground">Zero Trust Authentication Platform</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
-              Secure Authentication
+              NubleTrust
               <span className="block text-transparent bg-gradient-to-r from-primary to-blue bg-clip-text">
-                Made Simple
+                Secure. Scalable. Developer‑First.
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              Build secure, scalable authentication and authorization into your applications with our developer-first
-              platform. Get started in minutes, not hours.
+              NubleTrust gives you risk‑based authentication, session intelligence, and zero‑trust access control
+              built for modern applications. Secure your APIs and users in minutes, not hours.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -135,19 +135,19 @@ export default function Home() {
           <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 max-w-4xl mx-auto">
             <div className="stat-item text-center">
               <div className="text-3xl font-bold text-foreground mb-2">99.9%</div>
-              <div className="text-muted-foreground text-sm">Uptime SLA</div>
+              <div className="text-muted-foreground text-sm">Uptime Guarantee</div>
             </div>
             <div className="stat-item text-center">
               <div className="text-3xl font-bold text-foreground mb-2">10M+</div>
-              <div className="text-muted-foreground text-sm">API Requests/day</div>
+              <div className="text-muted-foreground text-sm">Sessions Secured Daily</div>
             </div>
             <div className="stat-item text-center">
               <div className="text-3xl font-bold text-foreground mb-2">50K+</div>
-              <div className="text-muted-foreground text-sm">Developers</div>
+              <div className="text-muted-foreground text-sm">Developers Trust NubleTrust</div>
             </div>
             <div className="stat-item text-center">
               <div className="text-3xl font-bold text-foreground mb-2">150+</div>
-              <div className="text-muted-foreground text-sm">Countries</div>
+              <div className="text-muted-foreground text-sm">Countries Protected</div>
             </div>
           </div>
         </div>
@@ -157,10 +157,10 @@ export default function Home() {
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Everything you need for authentication</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Authentication without compromise</h2>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-              From simple login forms to enterprise SSO, we&apos;ve got you covered with industry-leading security and
-              developer experience.
+              From passwordless login to continuous risk checks, NubleTrust gives you a full zero‑trust stack designed
+              for modern teams and enterprises.
             </p>
           </div>
 
@@ -169,9 +169,9 @@ export default function Home() {
               <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-6">
                 <Zap className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">Lightning Fast Setup</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-4">Fast Integration</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Get authentication running in your app with just a few lines of code. No complex configuration required.
+                Add authentication and risk‑aware session management to your app with just a few lines of code.
               </p>
             </div>
 
@@ -179,9 +179,9 @@ export default function Home() {
               <div className="w-12 h-12 bg-blue/20 rounded-lg flex items-center justify-center mb-6">
                 <Lock className="w-6 h-6 text-blue" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">Enterprise Security</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-4">Zero Trust Security</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Built with security-first principles. SOC 2 compliant with advanced threat protection and monitoring.
+                Enforce continuous verification and risk checks. Every request, every session, always verified.
               </p>
             </div>
 
@@ -189,9 +189,9 @@ export default function Home() {
               <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-6">
                 <Users className="w-6 h-6 text-green-400" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">User Management</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-4">Smart Session Management</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Complete user lifecycle management with roles, permissions, and advanced user analytics.
+                Track devices, locations, and risk scores in real time. Terminate risky sessions automatically.
               </p>
             </div>
 
@@ -201,7 +201,8 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-4">Global Scale</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Distributed infrastructure across multiple regions for low-latency authentication worldwide.
+                Built on distributed infrastructure across multiple regions for low‑latency, secure authentication
+                worldwide.
               </p>
             </div>
 
@@ -211,7 +212,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-4">Compliance Ready</h3>
               <p className="text-muted-foreground leading-relaxed">
-                GDPR, CCPA, and HIPAA compliant out of the box. Focus on building, not compliance paperwork.
+                GDPR, CCPA, and HIPAA compliant by design. Secure your stack without extra compliance overhead.
               </p>
             </div>
 
@@ -221,7 +222,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-4">Developer First</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Comprehensive SDKs, detailed documentation, and responsive developer support when you need it.
+                SDKs, APIs, and docs built for productivity. Empowering developers to integrate auth in minutes.
               </p>
             </div>
           </div>
@@ -231,9 +232,9 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary/10 to-blue/10">
         <div className="container mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Ready to secure your application?</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Ready to build with Zero Trust?</h2>
           <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of developers who trust NubleTrust for their authentication needs.
+            Join thousands of developers adopting NubleTrust to secure their applications, APIs, and users.
           </p>
           <Link
             href="/auth"

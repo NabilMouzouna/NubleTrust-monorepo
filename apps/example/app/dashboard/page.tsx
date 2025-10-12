@@ -1,6 +1,6 @@
 'use client';
 
-import { useNubleTrust } from '@/SDK/src/react/authProvider';
+import { useNubleTrust } from '@nubletrust/sdk';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -30,7 +30,7 @@ export default function DashboardPage() {
   return (
     <div>
       <h1>Dashboard</h1>
-      <p>Welcome, {user?.email}!</p>
+      <p>Welcome, {user?.username}!</p>
       <p>This is a protected route. You can only see this if you are logged in.</p>
       <button onClick={() => { console.log("[DashboardPage] Logout button clicked"); logout(); }} className='border-2 border-red-500 text-red-500 px-3 py-2 my-4'>
         Logout

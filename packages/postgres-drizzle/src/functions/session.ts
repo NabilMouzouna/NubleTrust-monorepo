@@ -15,6 +15,12 @@ export async function getUserSessionById(id: string): Promise<UserSession | unde
   });
 }
 
+export async function getUserSessionByJwtTokenId(jwtTokenId: string): Promise<UserSession | undefined> {
+  return db.query.userSessions.findFirst({
+    where: eq(userSessions.jwtTokenId, jwtTokenId),
+  });
+}
+
 export async function updateUserSession(id: string, data: Partial<NewUserSession>): Promise<UserSession[]> {
   return db.update(userSessions).set(data).where(eq(userSessions.id, id)).returning();
 }

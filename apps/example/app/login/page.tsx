@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useNubleTrust } from '@/SDK/src/react/authProvider';
+import { useNubleTrust } from '@nubletrust/sdk';
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {

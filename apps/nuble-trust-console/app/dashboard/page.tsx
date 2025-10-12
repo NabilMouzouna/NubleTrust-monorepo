@@ -2,7 +2,6 @@
 
 import { registerAppReturn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { Layout } from "@/components/layout";
 import { StatsCards } from "@/components/dashboard/stats-cards";
 import { AppCreationForm } from "@/components/dashboard/app-creation-form";
 import { AppDetails } from "@/components/dashboard/app-details";
@@ -61,7 +60,6 @@ export default function Home() {
     redirect("/auth")
   }
   return (
-    <Layout>
       <div className="space-y-8">
         {/* Header */}
         <motion.div
@@ -93,6 +91,5 @@ export default function Home() {
         {/* Quick Actions */}
         <QuickActions />
       </div>
-    </Layout>
   );
 }
